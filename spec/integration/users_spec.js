@@ -29,11 +29,11 @@ describe("routes : users", () => {
     });
   });
 
-  describe("POST /users", () => {
+  describe("POST /users/signup", () => {
 
     it("should create a new user with valid values and redirect", (done) => {
       const options = {
-        url: base,
+        url: `${base}signup`,
         form: {
           email: "user@example.com",
           password: "1234567890"
@@ -43,7 +43,7 @@ describe("routes : users", () => {
       request.post(options,
         (err, res, body) => {
           User.findOne({ where: {email: "user@example.com"}})
-          .then((user) => {
+          .then((user) => { console.log(user)
             expect(user).not.toBeNull();
             expect(user.email).toBe("user@example.com");
             expect(user.id).toBe(1);
@@ -80,8 +80,6 @@ describe("routes : users", () => {
     });
   });
 
-  it("should send the user a confirmation email", (done) => {
-    
-  })
+
 
 });
