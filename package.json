@@ -11,7 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "jasmine": "^3.0.0",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "faker": "^4.1.0"
   },
   "dependencies": {
     "@sendgrid/mail": "^6.4.0",
@@ -23,7 +24,7 @@
     "express-flash": "0.0.2",
     "express-session": "^1.15.6",
     "express-validator": "^5.0.2",
-    "faker": "^4.1.0",
+
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
