@@ -1,4 +1,4 @@
-const User = require("./models").User;
+/* const User = require("./models").User;
 const bcrypt = require("bcryptjs");
 
 
@@ -22,3 +22,4 @@ module.exports = {
   }
 
 }
+*/
