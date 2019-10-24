@@ -6,7 +6,8 @@ const app = express();
 
 
 
-//routeConfig.init(app);
+appConfig.init(app, express);
+routeConfig.init(app);
 
 
 module.exports = app;
