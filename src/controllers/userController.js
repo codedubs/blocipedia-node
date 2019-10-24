@@ -1,4 +1,4 @@
-const userQueries = require("../db/queries.users.js");
+/*const userQueries = require("../db/queries.users.js");
 const sendMail = require("./emailController.js");
 
 
@@ -34,3 +34,5 @@ module.exports = {
 
 
 }
+
+*/
