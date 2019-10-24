@@ -1,4 +1,4 @@
-const User = require("../db/models").User;
+/* const User = require("../db/models").User;
 
 module.exports = {
 
@@ -16,7 +16,7 @@ module.exports = {
           }
         }) */
       }
-
+/*
     const errors = req.validationErrors();
 
     if (errors) {
@@ -28,3 +28,4 @@ module.exports = {
     }
 
 }
+*/
