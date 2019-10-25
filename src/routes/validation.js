@@ -9,12 +9,12 @@ module.exports = {
     if (req.method === "POST") {
 
       req.checkBody("email", "must be a valid email").isEmail();
-    /*  req.checkBody("email", "email already exists").custom(email => {
+    req.checkBody("email", "email already exists").custom(email => {
         return User.findUserByEmail(email).then(user => {
           if (user) {
             throw new Error("That email already exists")
           }
-        }) */
+        }) 
       }
 
     const errors = req.validationErrors();
