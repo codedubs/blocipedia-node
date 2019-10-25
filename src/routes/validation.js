@@ -16,11 +16,11 @@ module.exports = {
         return User.findUserByEmail(email).then(user => {
           if (user) {
             return Promise.reject("Email already in use");
+          } else {
+            return next();
           }
         })
-        .catch((err) => {
-          done();
-        })
+
       })
     }
 
