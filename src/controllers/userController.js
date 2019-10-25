@@ -17,7 +17,7 @@ module.exports = {
     };
 
     userQueries.createUser(newUser, (err, user) => {
-      if(err) { console.log(err)
+      if(err) { 
         req.flash("that email already exists", err);
         res.redirect("/users/signup")
       } else {
