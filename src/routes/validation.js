@@ -14,12 +14,12 @@ module.exports = {
       req.checkBody("password", "must be at least 6 characters in length").isLength({min: 5})
       req.checkBody("email", "email already exists").custom(email => {
         return User.findUserByEmail(email).then(user => {
-          if (user) {
-            return Promise.reject("Email already in use");
+          if (user === null) {
+            return true;
           } else {
-            return next();
+            return false
           }
-        })
+        }).withMessage("dhflsjhf")
 
       })
     }
