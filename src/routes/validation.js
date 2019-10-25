@@ -15,10 +15,11 @@ module.exports = {
       req.checkBody("email").custom(value => {
         return User.findUserByEmail(value).then(user => {
           if (user) {
-            console.log("yayha")
+            return Promise.reject("emem")
           }
 
       })
+    })
     }
 
     const errors = req.validationErrors();
