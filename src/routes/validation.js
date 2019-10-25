@@ -17,8 +17,8 @@ module.exports = {
 
     const errors = req.validationErrors();
 
-    if (errors) {
-      req.flash("error", errors);
+    if (errors) { console.log(errors)
+      req.flash("error", "errors");
       return res.redirect("/users/signup")
     } else {
       return next();
