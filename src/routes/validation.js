@@ -13,9 +13,9 @@ module.exports = {
       req.checkBody("email", "must be a valid email").isEmail();
       req.checkBody("password", "must be at least 6 characters in length").isLength({min: 5})
       req.checkBody("email").custom(email => {
-        return User.findUserByEmail(email).then(user => {
-          if (user) {
 
+          if (user) {
+            throw new Error("email already")
           }
 
       })
