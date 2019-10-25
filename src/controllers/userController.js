@@ -17,8 +17,8 @@ module.exports = {
     };
 
     userQueries.createUser(newUser, (err, user) => {
-      if(err) { 
-        req.flash("that email already exists", err);
+      if(err) {
+        req.flash("error", err);
         res.redirect("/users/signup")
       } else {
         sendMail(user.email, "Welcome to blocipedia", "just a string");
