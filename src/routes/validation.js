@@ -15,8 +15,7 @@ module.exports = {
       req.checkBody("email", "email already exists").custom(email => {
         return User.findUserByEmail(email).then(user => {
           if (user) {
-            req.flash("error", errors);
-            return res. redirect("/users/signup")
+            return Promise.reject("Email already in use");
           }
         })
       })
