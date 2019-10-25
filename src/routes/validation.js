@@ -12,13 +12,13 @@ module.exports = {
 
       req.checkBody("email", "must be a valid email").isEmail();
       req.checkBody("password", "must be at least 6 characters in length").isLength({min: 5});
-      
+
     }
 
     const errors = req.validationErrors();
 
-    if (errors) { console.log(errors)
-      req.flash("error", "errors");
+    if (errors) {
+      req.flash("error", error);
       return res.redirect("/users/signup")
     } else {
       return next();
