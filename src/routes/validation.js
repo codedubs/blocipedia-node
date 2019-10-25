@@ -18,6 +18,9 @@ module.exports = {
             return Promise.reject("Email already in use");
           }
         })
+        .catch((err) => {
+          done();
+        })
       })
     }
 
