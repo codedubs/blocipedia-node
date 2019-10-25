@@ -14,8 +14,9 @@ module.exports = {
           if (user) {
             throw new Error("That email already exists")
           }
-        }) 
-      }
+        })
+      })
+    }
 
     const errors = req.validationErrors();
 
