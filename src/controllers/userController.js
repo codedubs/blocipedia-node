@@ -18,10 +18,10 @@ module.exports = {
 
     userQueries.createUser(newUser, (err, user) => {
       if(err) {
-        req.flash("that email already exists", err);
+        req.flash("error", err);
         res.redirect("/users/signup")
       } else {
-        sendMail(user.email, "Welcome to blocipedia", "just a string");
+        sendMail(user.email, "Welcome to blocipedia", "You've signed up!");
         req.flash("notice", "You've successfully signed up");
         res.redirect("/");
       }
