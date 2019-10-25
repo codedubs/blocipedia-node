@@ -14,7 +14,6 @@ module.exports = {
     app.set("views", viewsFolder);
     app.set("view engine", "ejs");
     app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(express.static(path.join(__dirname, "..", "assets")));
     app.use(expressValidator());
     app.use(session({
       secret: 'process.env.cookieSecret',
@@ -29,5 +28,6 @@ module.exports = {
       res.locals.currentUser = req.user;
       next();
     })
+    app.use(express.static(path.join(__dirname, "..", "assets")));
   }
 };
