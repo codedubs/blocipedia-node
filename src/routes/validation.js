@@ -15,11 +15,8 @@ module.exports = {
       req.checkBody("email", "email already exists").custom(email => {
         return User.findUserByEmail(email).then(user => {
           if (user === null) {
-            return true;
-          } else {
-            return false
+            
           }
-        }).withMessage("dhflsjhf")
 
       })
     }
