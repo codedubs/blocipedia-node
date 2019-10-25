@@ -15,7 +15,7 @@ module.exports = {
       req.checkBody("email", "email already exists").custom(email => {
         return User.findUserByEmail(email).then(user => {
           if (user) {
-            req.flash("That email already exists")
+            req.flash("error", errors)
           }
         })
       })
