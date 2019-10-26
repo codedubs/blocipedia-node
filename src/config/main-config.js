@@ -15,6 +15,7 @@ module.exports = {
     app.set("views", viewsFolder);
     app.set("view engine", "ejs");
     app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(logger('dev'));
     app.use(expressValidator());
     app.use(session({
       secret: 'process.env.cookieSecret',
