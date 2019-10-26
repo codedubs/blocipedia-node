@@ -4,7 +4,7 @@ module.exports = {
 
 
   validateUsers(req, res, next) {
-    const email = req.body.email;
+    //const email = req.body.email;
 
     if (req.method === "POST") {
 
