@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-<% include ./partials/head.ejs %>
+    <% include ./partials/head.ejs %>
   </head>
   <body>
 
- <% include ./partials/navbar.ejs %>
+      <!-- Navigation -->
+  <% include ./partials/navbar.ejs %>
 
       <!-- Page Content -->
       <main class="container">
-
+ <% include ../static/partials/messages.ejs %>
         <!-- Jumbotron Header -->
         <header class="jumbotron my-4">
-          <h1 class="display-3">Welcome to blocipedia</h1>
-          <p class="lead">An application for users to share wikis.</p>
+          <h1 class="display-3">Welcome to Blocipedia</h1>
+          <p class="lead">An application for users to share information.</p>
           <a href="/users/signup" class="btn btn-primary btn-lg">Sign up</a>
         </header>
 
@@ -41,6 +42,6 @@
       </main>
       <!-- /.container -->
 
-<% include ./partials/baseScripts.ejs %>
+      <% include ./partials/baseScripts.ejs %>
     </body>
 </html>

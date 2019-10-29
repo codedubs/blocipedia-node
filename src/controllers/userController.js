@@ -1,5 +1,8 @@
 const userQueries = require("../db/queries.users.js");
 const sendMail = require("./emailController.js");
+//const passport = require("passport");
+
+
 
 
 module.exports = {
@@ -10,6 +13,7 @@ module.exports = {
 
 
   create(req, res, next) {
+
     let newUser = {
       email: req.body.email,
       password: req.body.password,
@@ -17,16 +21,40 @@ module.exports = {
     };
 
     userQueries.createUser(newUser, (err, user) => {
-      if(err) { console.log(err)
-        req.flash("that email already exists", err);
+     if(err) {
+        req.flash("error", err);
         res.redirect("/users/signup")
       } else {
-        sendMail(user.email, "Welcome to blocipedia", "just a string");
-        req.flash("notice", "You've successfully signed up");
+        sendMail(user.email);
+        req.flash("notice", "You've successfully signed up!");
         res.redirect("/");
       }
-    });
+    })
   }
+
+/*
+  signInForm(req, res, next) {
+    res.render("users/sign_in");
+  },
+
+
+  signIn(req, res, next) {
+    passport.authenticate("local")(req, res, function () {
+      if(!req.user) {
+        req.flash("notice", "Sign in failed. Please try again.");
+        res.redirect("/users/sign_in");
+      } else {
+        req.flash("notice", "You've successfully signed in");
+        res.redirect("/");
+      }
+    })
+  },
+
+  signOut(req, res, next) {
+    req.logout();
+    req.flash("TESTING TEST TEST")
+    res.redirect("/");
+  } */
 
 
 

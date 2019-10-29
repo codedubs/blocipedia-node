@@ -5,8 +5,8 @@ const bodyParser = require("body-parser");
 const expressValidator = require("express-validator");
 const session = require("express-session");
 const flash = require("express-flash");
-
 const logger = require('morgan');
+
 
 module.exports = {
 
@@ -25,7 +25,7 @@ module.exports = {
      }));
      app.use(flash());
 
- app.use(express.static(path.join(__dirname, "..", "assets")));
+     app.use(express.static(path.join(__dirname, "..", "assets")));
    }
 
 
