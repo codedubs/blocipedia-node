@@ -4,7 +4,6 @@ const sendMail = require("./emailController.js");
 
 
 
-
 module.exports = {
 
   signUp(req, res, next) {
@@ -20,22 +19,14 @@ module.exports = {
       passwordConfirmation: req.body.passwordConfirmation
     };
 
+
     userQueries.createUser(newUser, (err, user) => {
-<<<<<<< HEAD
-      if(err) {
-        req.flash("error", err);
-        res.redirect("/users/signup")
-      } else {
-        sendMail(user.email, "Welcome to blocipedia", "You've signed up!");
-        req.flash("notice", "You've successfully signed up");
-=======
      if(err) {
         req.flash("error", err);
         res.redirect("/users/signup")
       } else {
         sendMail(user.email);
         req.flash("notice", "You've successfully signed up!");
->>>>>>> checkpoint-2-usersignup
         res.redirect("/");
       }
     })
