@@ -14,7 +14,7 @@ module.exports = {
       req.checkBody("email").custom(value => {
         return User.findOne( {where: {email: value}} ).then(user =>  {
           if(user) {
-          req.flash('E-mail already in use');
+          throw new Error('E-mail already in use');
           }
         })
       });
