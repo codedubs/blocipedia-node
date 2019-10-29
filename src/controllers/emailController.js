@@ -25,13 +25,13 @@ if(env === 'test') {
   mailer = sgMail;
 }
 
-function sendMail(to, subject, text) {
+function sendMail(to) {
 
   const msg = {
     to: to,
-    from: 'test@example.com',
-    subject: subject,
-    text: text,
+    from: 'test@blocipedia.com',
+    subject: 'Welcome to blocipedia!',
+    text: "You have successfully signed up!",
   };
   sgMail.send(msg);
 
