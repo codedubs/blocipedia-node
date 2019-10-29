@@ -36,7 +36,7 @@ module.exports = {
   }
 }; */
 
-<<<<<<< HEAD
+
 require("dotenv").config();
 const path = require("path");
 const viewsFolder = path.join(__dirname, "..", "views");
@@ -45,10 +45,6 @@ const logger = require("morgan");
 const expressValidator = require("express-validator");
 const session = require("express-session");
 const flash = require("express-flash");
-=======
-     app.use(express.static(path.join(__dirname, "..", "assets")));
-   }
->>>>>>> checkpoint-2-usersignup
 
 
 //const passportConfig = require("./passport-config");
@@ -62,7 +58,7 @@ module.exports = {
 
     app.use(expressValidator());
     app.use(session({
-      secret: "process.env.cookieSecret",
+      secret: process.env.cookieSecret,
       resave: false,
       saveUninitialized: false,
       cookie: {maxAge: 1.21e+9}

@@ -3,28 +3,6 @@
 const sgMail = require('@sendgrid/mail');
 const env = process.env.NODE_ENV || 'development';
 
-
-
-let mailer;
-
-if(env === 'test') {
-  class MockMailer {
-    constructor() {
-      this.sent = [];
-    }
-
-    send(msg) {
-      this.sent.push(msg)
-    }
-  }
-
-  mailer = new MockMailer();
-} else {
-
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-  mailer = sgMail;
-}
-
 function sendMail(to) {
 
   const msg = {
@@ -37,4 +15,4 @@ function sendMail(to) {
 
 }
 
-module.exports = { sendMail, mailer };
+module.exports = sendMail;
