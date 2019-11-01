@@ -1,7 +1,9 @@
 // using Twilio SendGrid's v3 Node.js Library
 // https://github.com/sendgrid/sendgrid-nodejs
 const sgMail = require('@sendgrid/mail');
-const env = process.env.NODE_ENV || 'development';
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+/*const env = process.env.NODE_ENV || 'development';
 
 
 
@@ -23,18 +25,19 @@ if(env === 'test') {
 
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
   mailer = sgMail;
-}
+}*/
 
 function sendMail(to, subject, text) {
 
   const msg = {
     to: to,
     from: 'test@example.com',
-    subject: subject,
-    text: text,
+    subject: 'Welcome to blocipedia!',
+    text: "You have successfully signed up!",
   };
   sgMail.send(msg);
 
 }
 
-module.exports = { sendMail, mailer };
+module.exports = sendMail;
+//module.exports = { sendMail, mailer };
