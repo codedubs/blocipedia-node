@@ -19,17 +19,16 @@ module.exports = {
       passwordConfirmation: req.body.passwordConfirmation
     };
 
-
     userQueries.createUser(newUser, (err, user) => {
      if(err) {
         req.flash("error", err);
         res.redirect("/users/signup")
       } else {
         passport.authenticate("local")(req, res, () => {
-          sendMail(user.email);
           req.flash("notice", "You've successfully signed up!");
           res.redirect("/");
         })
+        sendMail(user.email);
       }
     });
   },
