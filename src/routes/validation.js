@@ -34,15 +34,32 @@ module.exports = {
       return next()
     } */
 
-
-
     if(errors) {
       req.flash("error", errors);
       return res.redirect("/users/signup")
     } else {
-      return next()
+      return next();
+    }
+  },
+
+  validateWikis(req, res, next) {
+
+    if(req.method === "POST") {
+
+      req.checkBody("body", "must not be empty").notEmpty();
+      req.checkBody("title", "must be at least 2 characters in length").isLength({min: 2});
+      req.checkBody("body", "must be at least 10 characters in length").isLength({min: 5});
+
     }
 
+    const errors = req.validationErrors();
+
+    if(errors) {
+      req.flash("error", errors);
+      return res.redirect(303, "/wikis/create");
+    } else {
+      return next();
+    }
   }
 
 }
