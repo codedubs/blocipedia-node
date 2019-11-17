@@ -10,7 +10,7 @@ for(let i = 1; i <=15; i++) {
     password: faker.hacker.phrase(),
     createdAt: new Date(),
     updatedAt: new Date(),
-    role: 0
+    role: "standard"
   });
 }
 
