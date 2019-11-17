@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <script src="https://js.stripe.com/v3/"></script>
+<body>
+
+
+  <br>
+  <br>
+  <form action="/downgrade" method="post" id="payment-form">
+    <h1> Manage Account </h1>
+    <p> By clicking 'cancel', you agree to cancel your existing subsciption.</p>
+    <br>
+      <div class="form-row">
+          <label for="card-element">
+
+          </label>
+
+      <button>Cancel</button>
+  </form>
+</body>
+  <script>
+      // Create a Stripe client.
+      var stripe = Stripe('pk_test_gZJlsHSmiWb4JsjtYzhhUM7W00HhTUDliW');
+      // Create an instance of Elements.
+      var elements = stripe.elements();
+      // Custom styling can be passed to options when creating an Element.
+      var style = {
+          base: {
+              color: '#32325d',
+              lineHeight: '18px',
+              fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+              fontSmoothing: 'antialiased',
+              fontSize: '16px',
+              '::placeholder': {
+                  color: '#aab7c4'
+              }
+          },
+          invalid: {
+              color: '#fa755a',
+              iconColor: '#fa755a'
+          }
+      };
+
+
+
+
+  </script>
+
+  <style>
+      body,
+      html {
+          height: 100%;
+          background-color: #f7f8f9;
+          color: #6b7c93;
+      }
+      h1 {
+        text-align: left;
+        font-family: Helvetica;
+      }
+      p {
+        text-align: left;
+        font-family: Helvetica;
+      }
+      #card-element {
+          height: 16px;
+      }
+      #card-errors {
+          margin: 0 auto;
+          height: 20px;
+          padding: 4px 0;
+          color: #fa755a;
+      }
+      button {
+          border: none;
+          border-radius: 4px;
+          outline: none;
+          text-decoration: none;
+          color: #fff;
+          background: #32325d;
+          white-space: nowrap;
+          display: inline-block;
+          height: 40px;
+          line-height: 40px;
+          padding: 0 14px;
+          box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+          border-radius: 4px;
+          font-size: 15px;
+          font-weight: 600;
+          letter-spacing: 0.025em;
+          text-decoration: none;
+          -webkit-transition: all 150ms ease;
+          transition: all 150ms ease;
+          float: left;
+          margin-left: 12px;
+          margin-top: 24px;
+      }
+      button:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 7px 14px rgba(50, 50, 93, .10), 0 3px 6px rgba(0, 0, 0, .08);
+          background-color: #43458b;
+      }
+      #payment-form {
+          background-color: #f7f8f9;
+          flex-direction: row;
+          color: #6b7c93;
+          font-family: "Helvetica Neue", Helvetica, sans-serif;
+          padding: 30px;
+          margin: auto;
+          width: 50%;
+          -webkit-font-smoothing: antialiased;
+          display: block;
+      }
+      label {
+          font-weight: 500;
+          font-size: 14px;
+          display: block;
+          margin-bottom: 8px;
+      }
+      .form-row {
+          width: 70%;
+          float: left;
+      }
+
+      .StripeElement {
+          background-color: white;
+          height: 40px;
+          padding: 10px 12px;
+          border-radius: 4px;
+          border: 1px solid transparent;
+          box-shadow: 0 1px 3px 0 #e6ebf1;
+          -webkit-transition: box-shadow 150ms ease;
+          transition: box-shadow 150ms ease;
+      }
+      .StripeElement--focus {
+          box-shadow: 0 1px 3px 0 #cfd7df;
+      }
+      .StripeElement--invalid {
+          border-color: #fa755a;
+      }
+      .StripeElement--webkit-autofill {
+          background-color: #fefde5 !important;
+      }
+
+  </style>
+</html>

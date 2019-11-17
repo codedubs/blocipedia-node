@@ -199,7 +199,7 @@ describe("routes : wikis", () => {
       User.create({
         email: "member@example.com",
         password: "12345",
-        role: 0
+        role: "standard"
       })
       .then(user => {
         request.get({

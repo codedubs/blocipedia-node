@@ -36,7 +36,8 @@ describe("routes : users", () => {
         url: `${base}signup`,
         form: {
           email: "user@example.com",
-          password: "1234567890"
+          password: "1234567890",
+          role: "standard"
         }
       }
 

@@ -16,7 +16,8 @@ module.exports = {
     let newUser = {
       email: req.body.email,
       password: req.body.password,
-      passwordConfirmation: req.body.passwordConfirmation
+      passwordConfirmation: req.body.passwordConfirmation,
+      role: req.body.role
     };
 
     userQueries.createUser(newUser, (err, user) => {
@@ -57,32 +58,6 @@ module.exports = {
     req.flash("notice", "You have signed out")
     res.redirect("/");
   }
-
-/*
-  signInForm(req, res, next) {
-    res.render("users/sign_in");
-  },
-
-
-  signIn(req, res, next) {
-    passport.authenticate("local")(req, res, function () {
-      if(!req.user) {
-        req.flash("notice", "Sign in failed. Please try again.");
-        res.redirect("/users/sign_in");
-      } else {
-        req.flash("notice", "You've successfully signed in");
-        res.redirect("/");
-      }
-    })
-  },
-
-  signOut(req, res, next) {
-    req.logout();
-    req.flash("TESTING TEST TEST")
-    res.redirect("/");
-  } */
-
-
 
 
 

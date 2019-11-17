@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     role: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: 0
+      defaultValue: "standard"
     }
   }, {});
   User.associate = function(models) {
@@ -31,9 +31,9 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.prototype._isOwner = function() {
-    return this.role === 0;
+    return this.role === "standard";
   }
-  User.prototype.isPremium = function() {
+  User.prototype._isPremium = function() {
     return this.role === "premium";
   };
 

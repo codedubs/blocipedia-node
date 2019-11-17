@@ -11,13 +11,13 @@ module.exports  = {
       id = req.body.userId || id;
       email = req.body.email || email;
 
-      if(id && id != 0) {
+      if(id && id != "standard") {
         req.user = {
           "id": id,
           "email": email,
           "role": role
         };
-      } else if (id == 0) {
+      } else if (id == "standard") {
         delete req.user;
       }
 
