@@ -1,6 +1,10 @@
 {
   "name": "blocipedia-node",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.15.3",
+    "npm": "6.4.1"
+  },
   "description": "an application to allow users to create, collaborate, and share wikis",
   "main": "src/server.js",
   "scripts": {
