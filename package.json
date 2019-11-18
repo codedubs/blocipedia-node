@@ -9,7 +9,7 @@
   "main": "src/server.js",
   "scripts": {
     "test": "export NODE_ENV=test && jasmine",
-    "start": "NODE_ENV=production && node src/server.js"
+    "start": "node src/server.js"
   },
   "author": "Iris",
   "license": "ISC",
