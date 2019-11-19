@@ -23,8 +23,7 @@ module.exports = {
     userQueries.createUser(newUser, (err, user) => {
      if(err) {
         req.flash("error", err);
-        res.redirect("/users/signup")
-
+        res.redirect("/users/signup");
       } else {
         passport.authenticate("local")(req, res, () => {
           req.flash("notice", "You've successfully signed up!");
