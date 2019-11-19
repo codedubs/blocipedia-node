@@ -34,12 +34,12 @@ module.exports = {
       return next()
     } */
 
-    if(errors) {
+    /*if(errors) {
       req.flash("error", errors);
-      return res.redirect("/")
+      return res.redirect("/users/signup")
     } else {
       return next();
-    }
+    }*/
   },
 
   validateWikis(req, res, next) {
