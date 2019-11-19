@@ -1,10 +1,6 @@
 {
   "name": "blocipedia-node",
   "version": "1.0.0",
-  "engines": {
-    "node": "10.15.3",
-    "npm": "6.4.1"
-  },
   "description": "an application to allow users to create, collaborate, and share wikis",
   "main": "src/server.js",
   "scripts": {
@@ -24,7 +20,7 @@
     "body-parser": "^1.19.0",
     "dotenv": "^5.0.0",
     "ejs": "^2.7.1",
-    "express": "^4.16.2",
+    "express": "^4.17.1",
     "express-flash": "0.0.2",
     "express-session": "^1.15.6",
     "express-validator": "^5.3.1",
