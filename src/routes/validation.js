@@ -36,7 +36,8 @@ module.exports = {
 
     if(errors) {
       req.flash("error", errors);
-      return res.redirect("/users/signup")
+      res.redirect("/users/signup")
+      return next();
     } else {
       return next();
     }
