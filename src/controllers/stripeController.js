@@ -21,7 +21,8 @@ module.exports = {
       stripe.customers.create({
         email: req.body.email,
         id: req.user.id,
-        source: req.body.stripeToken
+        source: req.body.stripeToken,
+        role: req.body.role
       })
       .then(customer => {
         stripe.charges.create({
@@ -32,7 +33,7 @@ module.exports = {
         .then(() => {
           userQueries.upgradeUser(customer.id);
           req.flash("notice", "You've successfully upgraded to Premium!");
-          res.redirect("/")
+          res.redirect("/");
         })
         .catch(err => {
           console.log(err);
@@ -40,7 +41,7 @@ module.exports = {
       })
       .catch(err => {
         console.log(err);
-        res.send(err);
+        res.render('static/error');
       });
     }
   },
