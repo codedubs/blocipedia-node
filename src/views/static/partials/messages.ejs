@@ -11,7 +11,7 @@
     Validation errors:
     <ul>
 
-<!-- #3 -->
+<!-- #3 --><% console.log(messages.error) %>
       <% messages.error.forEach((err) => { %>
         <li><%= `${err.param} ${err.msg}` %></li>
       <% }) %>
