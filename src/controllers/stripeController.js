@@ -16,14 +16,14 @@ module.exports = {
     if(req.user.role === 'premium') {
       req.flash("notice", "error");
       res.redirect("/wikis")
-    } else {console.log(req.body)
+    } else { console.log(req.body)
 
       stripe.customers.create({
         email: req.body.email,
         id: req.user.id,
         source: req.body.stripeToken
-      }).
-      then(customer => {
+      })
+      .then(customer => {
         stripe.charges.create({
           amount: 15*100,
           currency: 'usd',
