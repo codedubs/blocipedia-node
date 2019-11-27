@@ -21,18 +21,7 @@
         <% } %>
       <% } %>
 
-<!-- signed in as standard -->
-      <ul class="list-group">
-        <% wikis.forEach((wiki) => {
-          if(currentUser && wiki.private == false) { %>
-  <!-- list wiki items -->
-            <li class="list-group-item">
-              <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
-            </li>
-          <% } %>
-        <% }) %>
-      </ul>
-      <ul class="list-group">
+
 
 <!-- signed in as admin or premium user -->
       <% if(currentUser) { %>

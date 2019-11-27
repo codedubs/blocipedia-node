@@ -36,7 +36,7 @@ module.exports = {
           req.flash("notice", "You've successfully upgraded to Premium!");
           res.redirect("/");
         })
-        .catch(err => {
+        .catch(err => { 
           console.log(err);
         })
       })
