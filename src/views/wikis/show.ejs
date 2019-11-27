@@ -10,8 +10,8 @@
 
       <% include ../static/partials/messages.ejs %>
 
-      <h1><%= wiki.title %></h1>
 
+      <br><br>
       <% if(currentUser) { %>
         <a href="/wikis/new" class="btn btn-success">New Wiki</a>
         <a href="/wikis/<%= wiki.id %>/edit" class="btn btn-warning">Edit</a>
@@ -23,7 +23,9 @@
         <% } %>
 
       <% } %>
-
+      <br><br>
+      <h1><%= wiki.title %></h1>
+      <br><br>
       <p><%= wiki.body %></p>
     </main>
 
