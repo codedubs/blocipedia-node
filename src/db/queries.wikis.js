@@ -20,7 +20,7 @@ module.exports = {
     return Wiki.create({
       title: newWiki.title,
       body: newWiki.body,
-      private: false,
+      private: newWiki.private,
       userId: newWiki.userId
     })
     .then(wiki => {
@@ -30,6 +30,23 @@ module.exports = {
       callback(err);
     });
   },
+
+
+  addPrivateWiki(newPrivateWiki, callback) {
+    return Wiki.create({
+      title: newPrivateWiki.title,
+      body: newPrivateWiki.body,
+      private: newPrivateWiki.private,
+      userId: newPrivateWiki.userId
+    })
+    .then(wiki => {
+      callback(null, wiki);
+    })
+    .catch(err => {
+      callback(err);
+    });
+  },
+
 
   getWiki(id, callback) {
     return Wiki.findByPk(id)
@@ -61,6 +78,7 @@ module.exports = {
     });
   },
 
+
   updateWiki(req, updatedWiki, callback) {
     return Wiki.findByPk(req.params.id)
     .then(wiki => {
@@ -69,7 +87,7 @@ module.exports = {
       }
 
       const authorized = new Authorizer(req.user, wiki).update();
-      
+
       if(authorized) {
         wiki.update(updatedWiki,
         {
@@ -87,6 +105,22 @@ module.exports = {
       }
 
     });
+  },
+
+  updatePrivate(req, callback) {
+
+    return Wiki.findAll({
+      where: {
+        userId: req.user.id
+      }
+    })
+    .then(wikis => {
+      wikis.forEach(wiki => {
+        wiki.update({ private: false });
+      });
+    });
+
   }
+
 
 }

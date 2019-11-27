@@ -9,19 +9,55 @@
 
       <h1>Wikis</h1>
 
-<% if(currentUser) { %>
+
+<!-- signed in user -->
+      <% if(currentUser) { %>
         <a href="/wikis/new" class="btn btn-success">New Wiki</a>
       <% } %>
+<!-- signed in user is admin or premium -->
+      <% if(currentUser) { %>
+        <% if(currentUser._isAdmin() || currentUser._isPremium()) { %>
+        <a href="/wikis/private" class="btn btn-success">New Private Wiki</a>
+        <% } %>
+      <% } %>
 
+<!-- signed in as standard -->
       <ul class="list-group">
-<!-- #1 -->
-        <% wikis.forEach((wiki) => { %>
-<!-- #2 -->
-          <li class="list-group-item">
-            <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
-          </li>
+        <% wikis.forEach((wiki) => {
+          if(currentUser && wiki.private == false) { %>
+  <!-- list wiki items -->
+            <li class="list-group-item">
+              <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
+            </li>
+          <% } %>
         <% }) %>
       </ul>
+      <ul class="list-group">
+
+<!-- signed in as admin or premium user -->
+      <% if(currentUser) { %>
+        <% wikis.forEach((wiki) => {
+          if(currentUser._isAdmin() || currentUser._isPremium() && wiki.private == true) { %>
+  <!-- list wiki items -->
+            <li class="list-group-item">
+              <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
+            </li>
+        <% } %>
+      <% }) %>
+     <% } %>
+    </ul>
+
+
+    <ul class="list-group">
+<!-- not signed in user -->
+    <% wikis.forEach((wiki) => {
+       if(wiki.private == false) { %>
+         <li class="list-group-item">
+           <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
+         </li>
+       <% } %>
+    <% }) %>
+   </ul>
 
     </main>
   </body>

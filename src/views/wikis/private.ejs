@@ -11,9 +11,9 @@
 
       <% include ../static/partials/messages.ejs %>
 
-      <h1>New Wiki</h1>
+      <h1>New Private Wiki</h1>
 
-      <form action="/wikis/create" method="post">
+      <form action="/wikis/createPrivate" method="post">
         <div class="form-group">
           <label for="title">Wiki title</label>
           <input type="text" class="form-control" name="title" aria-describedby="titleHelp" placeholder="Enter Title">
@@ -24,7 +24,6 @@
           <textarea rows="7" class="form-control" name="body" placeholder="Enter Wiki information"></textarea>
           <small class="text-muted" id="bodyHelp">body must be 10 or more characters in length.</small>
         </div>
-
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
 

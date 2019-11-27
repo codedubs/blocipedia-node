@@ -3,6 +3,7 @@ const router = express.Router();
 const validation = require("./validation");
 const userController = require("../controllers/userController");
 const stripeController = require("../controllers/stripeController");
+const wikiController = require("../controllers/wikiController");
 
 
 

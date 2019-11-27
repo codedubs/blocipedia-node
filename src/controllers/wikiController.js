@@ -17,7 +17,6 @@ module.exports = {
 
 
   new(req, res, next) {
-
     const authorized = new Authorizer(req.user).new();
 
     if(authorized) {
@@ -26,20 +25,31 @@ module.exports = {
       req.flash("notice", "You must register to do that.");
       res.redirect("/wikis");
     }
+  },
 
+
+  private(req, res, next) {
+    const authorized = new Authorizer(req.user).private();
+
+    if(authorized) {
+      res.render("wikis/private");
+    } else {
+      req.flash("notice", "You are not authorized to do that.");
+      res.redirect("/wikis");
+    }
   },
 
 
   create(req, res, next) {
-
     const authorized =  new Authorizer(req.user).create();
 
     if(authorized) {
       let newWiki = {
+        id: req.body.id,
         title: req.body.title,
         body: req.body.body,
         private: false,
-        userId: req.user.id
+        userId: req.user.id,
       };
       wikiQueries.addWiki(newWiki, (err, wiki) => {
         if(err) {
@@ -56,9 +66,34 @@ module.exports = {
   },
 
 
+  createPrivate(req, res, next) {
+    const authorized = new Authorizer(req.user).private();
+
+    if(authorized) {
+      let newPrivateWiki = {
+        title: req.body.title,
+        body: req.body.body,
+        private: true,
+        userId: req.user.id,
+      };
+
+      wikiQueries.addPrivateWiki(newPrivateWiki, (err, wiki) => {
+        if(err) {
+          req.flash("error", err);
+          res.redirect(500, "wikis/private");
+        } else {
+          res.redirect(303, `/wikis/${wiki.id}`);
+        }
+      });
+    } else {
+      req.flash("notice", "You are not authorized to do that.");
+      res.redirect("/wikis");
+    }
+  },
+
+
   show(req, res, next) {
     wikiQueries.getWiki(req.params.id, (err, wiki) => {
-
       if(err || wiki == null) {
         res.redirect(404, "/")
       } else {
@@ -71,17 +106,15 @@ module.exports = {
   destroy(req, res, next) {
     wikiQueries.deleteWiki(req, (err, wiki) => {
       if(err) {
-        res.redirect(err, `wikis/${req.params.id}`)
+        res.redirect(err, `wikis/${req.params.id}`);
       } else {
-        res.redirect(303, "/wikis")
+        res.redirect(303, "/wikis");
       }
     });
   },
 
 
   edit(req, res, next) {
-
-
     wikiQueries.getWiki(req.params.id, (err, wiki) => {
       if(err || wiki == null) {
         res.redirect(404, "/");

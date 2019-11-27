@@ -7,6 +7,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 function sendMail(to) {
 
+
   const msg = {
     to: to,
     from: 'test@blocipedia.com',

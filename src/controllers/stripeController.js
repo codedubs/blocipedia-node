@@ -1,6 +1,7 @@
-const userQueries = require("../db/queries.users.js")
+const userQueries = require("../db/queries.users.js");
+const wikiQueries = require("../db/queries.wikis.js");
 const stripe = require('stripe')('sk_test_QrbrGP8sz70hvXXa0emIVb9C00Dbgc2ogK');
-
+//const wikiController = require("./wikiController.js");
 
 module.exports = {
 
@@ -59,6 +60,7 @@ module.exports = {
       res.redirect("/wikis");
     } else {
       userQueries.downgradeUser(req.user.id);
+      wikiQueries.updatePrivate(req);
       req.flash("notice", "You are now a Standard user");
       res.redirect("/");
     }
