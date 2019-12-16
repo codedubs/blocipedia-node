@@ -6,9 +6,9 @@
   <body>
     <main class="container">
       <% include ../static/partials/navbar.ejs %>
-
-      <h1>Wikis</h1>
-
+      <br>
+      <h2>Wikis</h2>
+      <br>
 
 <!-- signed in user -->
       <% if(currentUser) { %>
@@ -26,13 +26,13 @@
 <!-- signed in as admin or premium user -->
       <% if(currentUser) { %>
         <% wikis.forEach((wiki) => {
-          if(currentUser._isAdmin() || currentUser._isPremium() && wiki.private == true) { %>
+          if(currentUser._isAdmin() || currentUser._isPremium() || wikiCollaborations.includes(wiki.id) && (currentUser.access == true) && wiki.private == true) { %>
   <!-- list wiki items -->
             <li class="list-group-item">
               <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
             </li>
-        <% } %>
-      <% }) %>
+          <% } %>
+       <% }) %>
      <% } %>
     </ul>
 
@@ -47,7 +47,8 @@
        <% } %>
     <% }) %>
    </ul>
-
-    </main>
+  </main>
+    <br>
+    <br>
   </body>
 </html>

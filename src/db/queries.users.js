@@ -44,4 +44,32 @@ module.exports = {
     })
   }
 
+/*
+  addCollab(user, callback) {
+    return Collaborator.create({
+      email: user.email,
+      role: user.role
+    })
+    .then(user => {
+      callback(null, user);
+    })
+    .catch(err => {
+      callback(err);
+    });
+  },
+
+
+  removeCollab(user, callback) {
+    return Collaborator.findByPk(user.id)
+    .then(user => {
+      user.destroy()
+      .then(res => {
+        callback(null, user);
+      })
+    })
+    .catch(err => {
+      callback(err);
+    })
+  }*/
+
 }

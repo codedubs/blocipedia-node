@@ -8,10 +8,12 @@
     <% include ../static/partials/navbar.ejs %>
 
     <main class="container">
-
+      <br>
+      <h5 style="text-decoration:underline"><a href="/wikis">back to wikis</a></h5>
+      <br>
       <% include ../static/partials/messages.ejs %>
 
-      <h1>New Private Wiki</h1>
+      <h2>New Private Wiki</h2>
 
       <form action="/wikis/createPrivate" method="post">
         <div class="form-group">

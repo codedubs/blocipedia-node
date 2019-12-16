@@ -7,8 +7,11 @@
     <% include ../static/partials/navbar.ejs %>
 
     <main class="container">
-
-      <h1>Edit Wiki</h1>
+      <% include ../static/partials/messages.ejs %>
+      <br>
+      <h5 style="text-decoration:underline"><a href="/wikis">back to wikis</a></h5>
+      <br>
+      <h2>Edit Wiki</h2>
 
 <!-- #1 -->
       <form action="/wikis/<%= wiki.id %>/update" method="post">
@@ -24,6 +27,20 @@
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
       </form>
+      <br>
+      <br>
+      <br>
+      <% if(wiki.private === true) { %>
+        <% if(currentUser) { %>
+          <% if(currentUser._isAdmin() || (currentUser.id == wiki.userId)) { %>
+            <h3>Edit Collaborators</h3>
+            <p> Add or remove collaborators from your wikis. </p>
+            <a href="/wikis/<%= wiki.id %>/share" class="btn btn-success">Edit</a>
+          <% } %>
+        <% } %>
+      <% } %>
+
+
     </main>
 
     <% include ../static/partials/baseScripts.ejs %>

@@ -1,4 +1,5 @@
 const Wiki = require("./models").Wiki;
+const Collaborator = require("./models").Collaborator;
 const Authorizer = require("../policies/application");
 
 
@@ -85,7 +86,6 @@ module.exports = {
       if(!wiki) {
         return callback("Wiki not found");
       }
-
       const authorized = new Authorizer(req.user, wiki).update();
 
       if(authorized) {
@@ -108,7 +108,6 @@ module.exports = {
   },
 
   updatePrivate(req, callback) {
-
     return Wiki.findAll({
       where: {
         userId: req.user.id
@@ -119,7 +118,36 @@ module.exports = {
         wiki.update({ private: false });
       });
     });
+  },
 
+  getWikiCollab(wikiId, callback) {
+    return Collaborator.findAll({
+     where: {
+        wikiId: wikiId
+      }
+    })
+    .then(collaborators => { console.log(collaborators)
+      callback(null, collaborators)
+    })
+    .catch(err => {
+      callback(err)
+    });
+
+  },
+
+
+  getUserCollaborations(currentUser, callback) {
+    return Collaborator.findAll({
+      where: {
+        userId: currentUser
+      }
+    })
+    .then(collaborations => { console.log(collaborations)
+      callback(null, collaborations)
+    })
+    .catch(err => {
+      callback(err)
+    });
   }
 
 

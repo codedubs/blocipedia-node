@@ -16,6 +16,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: "standard"
+    },
+    access: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
     }
   }, {});
   User.associate = function(models) {
@@ -24,6 +29,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "userId",
       as: "wikis"
     });
+
+    User.hasMany(models.Collaborator, {
+      foreignKey: "userId",
+      as: "collaborators"
+    });
   };
 
   User.prototype._isAdmin = function() {
@@ -31,7 +41,11 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.prototype._isOwner = function() {
+    return this.role === "owner"
+  };
 
+  User.prototype._isStandard = function() {
+    return this.role === "standard"
   };
 
   User.prototype._isPremium = function() {

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../static/partials/head.ejs %>
+
+  </head>
+  <body>
+    <% include ../static/partials/navbar.ejs %>
+
+    <main class="container">
+      <% include ../static/partials/messages.ejs %>
+      <br>
+      <h5 style="text-decoration:underline"><a href="/wikis">back to wikis</a></h5>
+      <br>
+      <br>
+      <h2><a href="/wikis/<%= wiki.id %>"><h4 class="card-title"><%= wiki.title %></h4></a></h2>
+      <br>
+      <br>
+      <h4>Add Collaborators</h4>
+      <br>
+      <div>
+          <form action="/wikis/<%= wiki.id %>/collabAdd" method="post" >
+            <table border="1" style="width:50%" >
+              <thead>
+                <tr>
+                  <th>Email</th>
+                  <th style="text-align:center">Update Access</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% users.forEach(user => {  %>
+                  <% if(user.access == false && (user.id !== wiki.userId)) { %>
+                  <tr>
+                    <td><%= user.email %></td>
+
+                    <td style="text-align:center"><input  type="checkbox" name="<%= user.id %>"  value="true" ></td>
+                  </tr>
+                  <% } %>
+                <%  }) %>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+      <br>
+      </div>
+      <br>
+      <h4>Remove Collaborators</h4>
+
+        <br>
+        <div>
+        <form action="/wikis/<%= wiki.id %>/collabRemove" method="post" >
+          <table border="1" style="width:50%" >
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th style="text-align:center">Update Access</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% users.forEach(user => {  %>
+                <% if(user.access == true && (user.id !== wiki.userId)) { %>
+                <tr>
+                  <td><%= user.email %></td>
+
+                  <td style="text-align:center"><input  type="checkbox"  name="<%= user.id %>"  value="true" ></td>
+                </tr>
+                <% } %>
+              <%  }) %>
+            </tbody>
+          </table>
+          <br>
+          <br>
+          <button type="submit" class="btn btn-primary">Remove</button>
+      </form>
+    </div>
+    <br>
+    <br>
+    </main>
+
+    <% include ../static/partials/baseScripts.ejs %>
+
+  </body>
+</html>

@@ -21,7 +21,7 @@ module.exports = {
     };
 
     userQueries.createUser(newUser, (err, user) => {
-     if(err) { console.log(err)
+     if(err) { //console.log(err)
         req.flash("error", err);
         res.redirect("/users/signup");
       } else { console.log(201, user)
@@ -29,7 +29,7 @@ module.exports = {
           req.flash("notice", "You've successfully signed up!");
           res.redirect("/");
         })
-        sendMail(user.email);
+        //sendMail(user.email);
       }
     });
   },
@@ -59,6 +59,37 @@ module.exports = {
     res.redirect("/");
   }
 
+/*
+  addCollaborator(req, res, next) {
+    let collaborator = {
+      email: req.body.email,
+      role: req.body.role
+    };
+
+    userQueries.addCollab(collaborator, (err, user) => {
+      if(err) {
+        req.flash("An error occurred. Please try again.");
+        res.redirect("/wikis");
+      } else {
+        req.flash("Success! Collaborator has been added.");
+        res.redirect(`/wikis/${req.params.id}`)
+      }
+    })
+  },
+
+
+  removeCollaborator(req, res, next) {
+    userQueries.removeCollab(req.user, (err, user) => {
+      if(err) {
+        req.flash("An error occurred. Please try again");
+        res.redirect(`/wikis/${req.params.id}/edit`);
+      } else {
+        req.flash("Success. Collaborator has been removed.");
+        res.redirect(`/wikis/${req.params.id}`)
+      }
+    })
+  }
+*/
 
 
 

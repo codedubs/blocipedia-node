@@ -3,14 +3,25 @@ const Authorizer = require("../policies/application");
 const markdown = require("markdown").markdown;
 
 
+
 module.exports = {
 
   index(req, res, next) {
     wikiQueries.getAllWikis((err, wikis) => {
-      if(err) {
+      if(err) { console.log(err)
         res.redirect(500, "static/index");
       } else {
-        res.render("wikis/index", {wikis});
+        if(req.user) {
+          wikiQueries.getUserCollaborations(req.user.id, (err, collaborations) => {
+            let wikiCollaborations = [];
+            collaborations.forEach(collaboration => {
+              wikiCollaborations.push(collaboration.wikiId)
+            });
+            res.render("wikis/index", { wikis, wikiCollaborations });
+          });
+        } else {
+          res.render("wikis/index", { wikis });
+        }
       }
     });
   },
@@ -141,6 +152,8 @@ module.exports = {
       }
     });
   }
+
+
 
 
 }
